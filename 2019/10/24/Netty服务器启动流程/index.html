@@ -83,12 +83,12 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Netty服务器启动流程">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;24&#x2F;Netty%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B&#x2F;index.html">
-<meta property="og:site_name" content="neozhang的blog">
+<meta property="og:site_name" content="leotoneo的blog">
 <meta property="og:description" content="netty服务器创建示例代码如下： 123456789101112131415161718192021public static void main(String[] args) throws Exception &amp;#123;       EventLoopGroup bossGroup = new NioEventLoopGroup();       EventLoopGroup workGro">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;home&#x2F;neo&#x2F;.config&#x2F;Typora&#x2F;typora-user-images&#x2F;1571898842393.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;home&#x2F;neo&#x2F;.config&#x2F;Typora&#x2F;typora-user-images&#x2F;1571810250088.png">
-<meta property="og:updated_time" content="2019-10-29T06:47:53.424Z">
+<meta property="og:updated_time" content="2019-10-29T11:07:33.314Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;home&#x2F;neo&#x2F;.config&#x2F;Typora&#x2F;typora-user-images&#x2F;1571898842393.png">
 
@@ -100,7 +100,7 @@
     root: '/',
     scheme: 'Gemini',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -126,7 +126,7 @@
 
 
 
-  <title>Netty服务器启动流程 | neozhang的blog</title>
+  <title>Netty服务器启动流程 | leotoneo的blog</title>
   
 
 
@@ -156,12 +156,12 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">neozhang的blog</span>
+        <span class="site-title">leotoneo的blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
       
-        <p class="site-subtitle">ls all | grep code</p>
+        <p class="site-subtitle">ls -al | grep code</p>
       
   </div>
 
@@ -258,7 +258,7 @@
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-categories" itemscope itemtype="http://schema.org/Article">
   
   
   
@@ -268,11 +268,11 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="leotoneo">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/10008719?s=400&u=05a53333b301e292b76f6ec0eeb135c24f002f9f&v=4">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="neozhang的blog">
+      <meta itemprop="name" content="leotoneo的blog">
     </span>
 
     
@@ -302,6 +302,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Netty/" itemprop="url" rel="index">
+                    <span itemprop="name">Netty</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -551,6 +573,10 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
+              <img class="site-author-image" itemprop="image"
+                src="https://avatars2.githubusercontent.com/u/10008719?s=400&u=05a53333b301e292b76f6ec0eeb135c24f002f9f&v=4"
+                alt="leotoneo" />
+            
               <p class="site-author-name" itemprop="name">leotoneo</p>
               <p class="site-description motion-element" itemprop="description">十年之后 初心依旧</p>
           </div>
@@ -569,6 +595,15 @@
             
 
             
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
 
             
 
@@ -576,6 +611,22 @@
 
           
 
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/leotoneo" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="leotoneo@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
           
 
           
@@ -591,6 +642,13 @@
 
       
 
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
       
 
     </div>
@@ -613,15 +671,9 @@
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
 
 
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
 
 
 
@@ -638,11 +690,6 @@
       </div>
     </footer>
 
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
     
 
     
