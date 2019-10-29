@@ -7,16 +7,16 @@
   
   <title>Netty服务器启动流程 | 甲骨文</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Netty服务器启动流程netty服务器创建示例代码如下： 123456789101112131415161718192021public static void main(String[] args) throws Exception &amp;#123;       EventLoopGroup bossGroup = new NioEventLoopGroup();       EventLoopG">
+  <meta name="description" content="netty服务器创建示例代码如下： 123456789101112131415161718192021public static void main(String[] args) throws Exception &amp;#123;       EventLoopGroup bossGroup = new NioEventLoopGroup();       EventLoopGroup workGro">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Netty服务器启动流程">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;24&#x2F;Netty%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B&#x2F;index.html">
 <meta property="og:site_name" content="甲骨文">
-<meta property="og:description" content="Netty服务器启动流程netty服务器创建示例代码如下： 123456789101112131415161718192021public static void main(String[] args) throws Exception &amp;#123;       EventLoopGroup bossGroup = new NioEventLoopGroup();       EventLoopG">
+<meta property="og:description" content="netty服务器创建示例代码如下： 123456789101112131415161718192021public static void main(String[] args) throws Exception &amp;#123;       EventLoopGroup bossGroup = new NioEventLoopGroup();       EventLoopGroup workGro">
 <meta property="og:locale" content="ch">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;home&#x2F;neo&#x2F;.config&#x2F;Typora&#x2F;typora-user-images&#x2F;1571898842393.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;home&#x2F;neo&#x2F;.config&#x2F;Typora&#x2F;typora-user-images&#x2F;1571810250088.png">
-<meta property="og:updated_time" content="2019-10-24T09:28:09.282Z">
+<meta property="og:updated_time" content="2019-10-29T06:46:40.216Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;home&#x2F;neo&#x2F;.config&#x2F;Typora&#x2F;typora-user-images&#x2F;1571898842393.png">
   
@@ -87,7 +87,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Netty服务器启动流程"><a href="#Netty服务器启动流程" class="headerlink" title="Netty服务器启动流程"></a>Netty服务器启动流程</h1><p>netty服务器创建示例代码如下：</p>
+        <p>netty服务器创建示例代码如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">       EventLoopGroup bossGroup = <span class="keyword">new</span> NioEventLoopGroup();</span><br><span class="line">       EventLoopGroup workGroup = <span class="keyword">new</span> NioEventLoopGroup();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">       <span class="keyword">try</span> &#123;</span><br><span class="line">           ServerBootstrap serverBootstrap = <span class="keyword">new</span> ServerBootstrap();</span><br><span class="line">           serverBootstrap.group(bossGroup, workGroup).channel(NioServerSocketChannel.class).</span><br><span class="line">                   childHandler(<span class="keyword">new</span> NettyTcpServerInit());</span><br><span class="line"></span><br><span class="line">           ChannelFuture channelFuture = serverBootstrap.bind(<span class="number">8899</span>).sync();</span><br><span class="line">           channelFuture.channel().closeFuture().sync();</span><br><span class="line">       &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">           bossGroup.shutdownGracefully();</span><br><span class="line">           workGroup.shutdownGracefully();</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 
 <p>使用netty建立服务端流程大体分为三个过程：</p>
@@ -223,7 +223,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/24/Netty%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/" data-id="ck2bhlesx0000q3u88yax18v3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/24/Netty%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/" data-id="ck2bhn99g0000tvu89kcthp19" class="article-share-link">Share</a>
       
       
     </footer>
