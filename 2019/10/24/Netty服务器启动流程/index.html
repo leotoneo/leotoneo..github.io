@@ -86,11 +86,11 @@
 <meta property="og:site_name" content="leotoneo的blog">
 <meta property="og:description" content="netty服务器创建示例代码如下： 123456789101112131415161718192021public static void main(String[] args) throws Exception &amp;#123;       EventLoopGroup bossGroup = new NioEventLoopGroup();       EventLoopGroup workGro">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;home&#x2F;neo&#x2F;.config&#x2F;Typora&#x2F;typora-user-images&#x2F;1571898842393.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;home&#x2F;neo&#x2F;.config&#x2F;Typora&#x2F;typora-user-images&#x2F;1571810250088.png">
-<meta property="og:updated_time" content="2019-10-29T11:07:33.314Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;24&#x2F;Netty%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B&#x2F;serverbootstrapacceptor.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;24&#x2F;Netty%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B&#x2F;Reactor%E6%A8%A1%E5%BC%8F.png">
+<meta property="og:updated_time" content="2019-11-01T08:47:45.198Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;home&#x2F;neo&#x2F;.config&#x2F;Typora&#x2F;typora-user-images&#x2F;1571898842393.png">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;24&#x2F;Netty%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B&#x2F;serverbootstrapacceptor.png">
 
 
 
@@ -406,7 +406,8 @@
 
 <p>通过查看ServerBottstrapAcceptor类，可以看出该类继承ChannelInboundHandlerAdapter</p>
 <p>ChannelInboundHandlerAdapter为一个输入处理器（此处的输入和输出是对于当前channel而言，而每个channel都有自己的pipeline），pipeline结果可以简单理解为一个链表结构，里面添加了很多处理器，而此时的pipeline中如下所示</p>
-<p><img src="/home/neo/.config/Typora/typora-user-images/1571898842393.png" alt=""></p>
+<img src="/2019/10/24/Netty%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/serverbootstrapacceptor.png" class="" title="pipeline中的handler">
+
 <p>从上图中可以看到NioServerSocketChannel中的pipeline中只有HeadContext、TailContex和ServerBottstrapAcceptort三个处理器，而前两者是每个pipeline中都有的处理器。</p>
 <p>此处可以简单说明一下pipeline，在netty中每个channel都有一个pipeline，而pipeline中包含着入站处理器和出站处理器，此处的ServerBottstrapAcceptor就是入站处理器，可以简单理解为当channel上有读事件或者连接事件到来时会依次经过pipeline中的入站处理器，而channel的写事件则会依次经过出站处理器。</p>
 <p>所以，此处只是向channel的pipeline中添加服务器的入站处理器，而当有读时间或者连接事件到来时会调用此事件处理器的重写函数channelRead，而当有异常事件过来时会调用exceptionCaught。</p>
@@ -417,7 +418,8 @@
 <li>将NioSocketChannel注册到childGroup线程组中。</li>
 </ul>
 <p>此处理器这是用于处理服务器与客服端建立连接后，将建立连接的channel分发到到另外一个线程组上，netty的主要设计采用Reator设计模式，Reactor 模式的架构如下图所示:</p>
-<p><img src="/home/neo/.config/Typora/typora-user-images/1571810250088.png" alt="1571810250088"></p>
+<img src="/2019/10/24/Netty%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/Reactor%E6%A8%A1%E5%BC%8F.png" class="" title="Reactor模式">
+
 <p>​        从这张图中,我们可以发现,多个客户端会发送请求给到 Reactor。Reactor 有个请求分发线程 Dispatcher,也就是图中的 Acceptor,它会将不同的请求下发到多个工作线程中处理。在这个架构中,Acceptor 线程只是用于请求分发,不涉及具体的逻辑处理,非常得轻量级,因此有很高的吞吐量表现。而这些工作线程可以根据实际业务处理需要任意增减,从而动态调节系统负载能力。</p>
 <p>继续跟踪initAndRegister方法，会调用如下方法</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ChannelFuture regFuture = config().group().register(channel);</span><br></pre></td></tr></table></figure>
