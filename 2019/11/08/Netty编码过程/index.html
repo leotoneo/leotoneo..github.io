@@ -79,13 +79,14 @@
 
 
 
-<meta name="description" content="十年之后 初心依旧">
-<meta property="og:type" content="website">
-<meta property="og:title" content="leotoneo的blog">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;archives&#x2F;index.html">
+<meta name="description" content="如何将对象转换成字节流并写到socket中 WriteAndFlush 从Tail节点开始往前传播 逐个调用channelHandler的write放法 逐个调用channelHandler的flush方法 MessageToByteEncoderwrite过程 匹配对象 分配内存 编码实现 释放对象 传播数据 释放内存 flush 添加刷新标志并设置写状态 遍历buffer队列，过滤ByteBu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Netty编码过程">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;08&#x2F;Netty%E7%BC%96%E7%A0%81%E8%BF%87%E7%A8%8B&#x2F;index.html">
 <meta property="og:site_name" content="leotoneo的blog">
-<meta property="og:description" content="十年之后 初心依旧">
+<meta property="og:description" content="如何将对象转换成字节流并写到socket中 WriteAndFlush 从Tail节点开始往前传播 逐个调用channelHandler的write放法 逐个调用channelHandler的flush方法 MessageToByteEncoderwrite过程 匹配对象 分配内存 编码实现 释放对象 传播数据 释放内存 flush 添加刷新标志并设置写状态 遍历buffer队列，过滤ByteBu">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-11-08T07:49:23.108Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -116,13 +117,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/11/08/Netty编码过程/"/>
 
 
 
 
 
-  <title>归档 | leotoneo的blog</title>
+  <title>Netty编码过程 | leotoneo的blog</title>
   
 
 
@@ -141,7 +142,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -245,259 +246,194 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-categories" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/08/Netty%E7%BC%96%E7%A0%81%E8%BF%87%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="leotoneo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/10008719?s=400&u=05a53333b301e292b76f6ec0eeb135c24f002f9f&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leotoneo的blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">Netty编码过程</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-08T15:48:19+08:00">
+                2019-11-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 6 篇日志。 继续努力。
-      </span>
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Netty/" itemprop="url" rel="index">
+                    <span itemprop="name">Netty</span>
+                  </a>
+                </span>
 
-      
-
-        
-        
-        
-
-        
+                
+                
+              
+            </span>
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
-          </div>
-        
-        
 
-        
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/11/08/Netty%E7%BC%96%E7%A0%81%E8%BF%87%E7%A8%8B/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2019/11/08/Netty编码过程/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
 
-  <article class="post post-type-categories" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/11/08/Netty%E7%BC%96%E7%A0%81%E8%BF%87%E7%A8%8B/" itemprop="url">
-              
-                <span itemprop="name">Netty编码过程</span>
-              
-            </a>
-        
-      </h2>
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-11-08T15:48:19+08:00"
-              content="2019-11-08" >
-          11-08
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+          
 
+        </div>
+      </header>
+    
 
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-categories" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/11/08/Netty%E8%A7%A3%E7%A0%81%E8%BF%87%E7%A8%8B/" itemprop="url">
-              
-                <span itemprop="name">Netty解码过程</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-11-08T15:48:06+08:00"
-              content="2019-11-08" >
-          11-08
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-categories" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/11/04/Netty%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/" itemprop="url">
-              
-                <span itemprop="name">Netty内存分配</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-11-04T10:47:11+08:00"
-              content="2019-11-04" >
-          11-04
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-categories" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/11/01/Netty%E4%B8%AD%E7%9A%84ChannelPipeline/" itemprop="url">
-              
-                <span itemprop="name">Netty中的ChannelPipeline</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-11-01T15:36:39+08:00"
-              content="2019-11-01" >
-          11-01
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <p>如何将对象转换成字节流并写到socket中</p>
+<p>WriteAndFlush</p>
+<p>从Tail节点开始往前传播</p>
+<p>逐个调用channelHandler的write放法</p>
+<p>逐个调用channelHandler的flush方法</p>
+<h2 id="MessageToByteEncoder"><a href="#MessageToByteEncoder" class="headerlink" title="MessageToByteEncoder"></a>MessageToByteEncoder</h2><p>write过程</p>
+<p>匹配对象</p>
+<p>分配内存</p>
+<p>编码实现</p>
+<p>释放对象</p>
+<p>传播数据</p>
+<p>释放内存</p>
+<p>flush</p>
+<p>添加刷新标志并设置写状态</p>
+<p>遍历buffer队列，过滤ByteBuf</p>
+<p>调用jdk底层api进行自旋写</p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-categories" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/10/29/Netty%E6%96%B0%E8%BF%9E%E6%8E%A5%E5%88%9B%E5%BB%BA%E8%BF%87%E7%A8%8B/" itemprop="url">
-              
-                <span itemprop="name">Netty新连接创建过程</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-10-29T17:22:39+08:00"
-              content="2019-10-29" >
-          10-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-categories" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/10/24/Netty%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/" itemprop="url">
-              
-                <span itemprop="name">Netty服务器启动流程</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-10-24T16:38:57+08:00"
-              content="2019-10-24" >
-          10-24
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/08/Netty%E8%A7%A3%E7%A0%81%E8%BF%87%E7%A8%8B/" rel="next" title="Netty解码过程">
+                <i class="fa fa-chevron-left"></i> Netty解码过程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -505,6 +441,20 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -525,8 +475,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -591,6 +550,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#MessageToByteEncoder"><span class="nav-number">1.</span> <span class="nav-text">MessageToByteEncoder</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -747,6 +722,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -764,6 +743,18 @@
       <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
     
 
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2019/11/08/Netty%E7%BC%96%E7%A0%81%E8%BF%87%E7%A8%8B/';
+          this.page.identifier = '2019/11/08/Netty编码过程/';
+          this.page.title = 'Netty编码过程';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
     
 
   
